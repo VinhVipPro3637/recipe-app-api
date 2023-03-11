@@ -82,7 +82,7 @@ class PublicUserAPITest(TestCase):
 
         res = self.client.post(TOKEN_URL, payload)
 
-        self.assertEqual(res.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(res.status_code, status.HTTP_200_OK)
         self.assertIn('token', res.data)
 
     def test_create_token_bad_credentials(self):
@@ -147,6 +147,6 @@ class PrivateUserAPITests(TestCase):
 
         self.user.refresh_from_db()
         self.assertEqual(self.user.name, payload['name'])
-        self.assertEqual(self.user.password, payload['password'])
+        self.assertTrue(self.user.check_password(payload['password']))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
