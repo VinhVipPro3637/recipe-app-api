@@ -1,5 +1,5 @@
 FROM nginxinc/nginx-unprivileged:1-alpine
-LABEL maintainer="haha.com"
+LABEL maintainer="hellyeah.com"
 
 COPY ./default.conf.tpl /etc/nginx/default.conf.tpl
 COPY ./uwsgi_params /etc/nginx/uwsgi_params
@@ -21,4 +21,4 @@ VOLUME /vol/static
 
 USER nginx
 
-CMD  ["/run.sh"]
+CMD ["/run.sh"]
